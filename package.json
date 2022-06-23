@@ -1,0 +1,19 @@
+{
+  "name": "ntrs-nuevaturedsocial",
+  "version": "1.0.0",
+  "description": "API\u001b[D\u001b[D\u001b[D\u001b[D An API for a social network web application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CM-GDev/NTRS-NuevaTuRedSocial.git"
+  },
+  "author": "Cristobal M-G",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CM-GDev/NTRS-NuevaTuRedSocial/issues"
+  },
+  "homepage": "https://github.com/CM-GDev/NTRS-NuevaTuRedSocial#readme"
+}
