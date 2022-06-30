@@ -6,7 +6,6 @@ var validateEmail = function (email){
     return re.test(email)
 };
 
-
 // Schema to create User model
 const userSchema = new Schema(
     {
@@ -18,14 +17,16 @@ const userSchema = new Schema(
         },
         email: {
             type: String,
+            lowercase: true,
             unique: true,
             required: true,
-            validate: [validateEmail, "Please fill a valid email address"]
+            validate: [validateEmail, "Please fill a valid email address"],
+            // get: obfuscate,
         },
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Thoughts"
+                ref: "Thought"
             }
         ],
         friends: [this],
@@ -37,11 +38,12 @@ const userSchema = new Schema(
         id: false,
     }
 );
-
+//  virtual to add friendCount to toJSON response
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
 
+// Initialize our User model
 const User = model ('user', userSchema);
 
 module.exports = User;
