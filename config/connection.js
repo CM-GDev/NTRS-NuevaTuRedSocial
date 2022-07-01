@@ -8,5 +8,5 @@ connect(connectionString, {//Mongoose 6 always behaves as if useNewUrl... and us
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+// exporting connection
 module.exports = connection;
