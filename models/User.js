@@ -1,3 +1,4 @@
+// unpacking "schema" and "model" from mongoose
 const {Schema, model} = require('mongoose');
 
 //email validation function
@@ -45,5 +46,5 @@ userSchema.virtual('friendCount').get(function () {
 
 // Initialize our User model
 const User = model ('user', userSchema);
-
+// export User mode
 module.exports = User;

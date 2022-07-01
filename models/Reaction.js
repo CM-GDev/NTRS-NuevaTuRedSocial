@@ -1,5 +1,7 @@
+// unpacking "schema" and "model" from mongoose
 const { Schema, Types } = require('mongoose');
 
+// Schema for Reactions
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -28,4 +30,5 @@ const reactionSchema = new Schema(
   }
 );
 
+// exporting schema
 module.exports = reactionSchema;
