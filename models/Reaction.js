@@ -22,12 +22,16 @@ const reactionSchema = new Schema(
       default: Date.now,
     },
   },
+  {//_id field not necessary since we have "reactionId" field
+    _id: false
+  },
   {
     toJSON: {
       getters: true,
     },
     id: false,
   }
+  
 );
 
 // exporting schema

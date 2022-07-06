@@ -22,7 +22,6 @@ const userSchema = new Schema(
             unique: true,
             required: true,
             validate: [validateEmail, "Please fill a valid email address"],
-            // get: obfuscate,
         },
         thoughts: [
             {
@@ -30,7 +29,12 @@ const userSchema = new Schema(
                 ref: "thought"
             }
         ],
-        friends: [this],
+        friends: [ //[this]
+            {
+                type: Schema.Types.ObjectId,
+                ref: "user"
+            },
+        ]
     },
     {
         toJSON: {

@@ -29,7 +29,6 @@ const thoughtSchema = new Schema(
         },
         id: false,
     },
-    // { timestamps: true}
 );
 //  virtual to add reactionCount to toJSON response
 thoughtSchema.virtual('reactionCount').get(function () {

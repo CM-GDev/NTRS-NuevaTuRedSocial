@@ -13,7 +13,7 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       .populate({ path: 'friends', select: '-__v'})
-      .then((users) => {
+      .then(async (users) => {
         const userObj = {
           users,
           userCount: await userCount(),
@@ -39,7 +39,7 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
-  // create a new user: /api/users/
+  // Create a new user: /api/users/
   createUser(req, res) {
     User.create({username: req.body.username, email: req.body.email})
       .then((user) => res.json(user))
@@ -74,7 +74,7 @@ module.exports = {
         //If any, remove thoughts associated with deleted User
         : Thought.deleteMany({ username: {$in: user.username }})
         )
-        .then(()=> res.json({ message: 'User and thoughts deleted!'}))
+        .then(()=> res.json({ message: 'User and associated thoughts, if any have been deleted!'}))
         .catch((err) => {
           console.log (err)
           return res.status(500).json(err)
@@ -84,7 +84,6 @@ module.exports = {
   // Add a friend to a User: /api/users/:userId/friends/:friendId
   createFriend(req, res) {
     console.log('You are adding a friend');
-    console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
@@ -106,7 +105,7 @@ module.exports = {
   deleteFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { _id: req.params.friendId } } },
+      { $pull: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>

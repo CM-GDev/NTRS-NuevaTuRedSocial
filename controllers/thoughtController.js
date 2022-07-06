@@ -1,7 +1,7 @@
 //Importing models
 const { Thought, User } = require('../models');
 
-// An aggregate function to get the number of thoughts overall
+// An aggregate function to get the number of total thoughts
 const thoughtCount = async () =>
   Thought.aggregate()
     .count('thoughtCount')
@@ -13,7 +13,7 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find()
       .populate({ path: 'reactions', select: '-__v'})
-      .then((thoughts) => {
+      .then(async(thoughts) => {
         const thoughtObj = {
           thoughts,
           thoughtCount: await thoughtCount(),
@@ -41,8 +41,22 @@ module.exports = {
   },
   // create a new thought: /api/thoughts
   createThought(req, res) {
-    Thought.create({thoughtText: req.body.thoughtText, username: req.body.username, userId: req.body.userId})
-      .then((thought) => res.json(thought))
+    Thought.create({thoughtText: req.body.thoughtText, username: req.body.username})
+    //.then((res) => console.log(res)
+    //.then((res) => console.log(res._id))
+    //Updating user info with created thought
+      .then((res) => User.findOneAndUpdate(
+        {_id: req.body.userId},
+        { $addToSet: { thoughts: res._id }},
+        { runValidators: true, new: true}
+      ))
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: 'No user found with that ID :(. Thought cannot be created' })
+          : res.json(user)
+      )
       .catch((err) => {
         console.log (err);
         return res.status(500).json(err);
@@ -71,6 +85,16 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
+          // Update User profile after deleting thought
+          : User.findOneAndUpdate(
+            { thoughts: req.params.thoughtId },
+            { $pull: { thoughts: req.params.thoughtId}},
+            {new: true}
+          )
+      )
+      .then((user)=>
+        !user
+          ? res.status(404).json({ message: "Thought deleted, but no User found"})
           : res.json({ message: 'Thought successfully deleted' })
       )
       .catch((err) => {
@@ -85,7 +109,7 @@ module.exports = {
     console.log(req.body);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { reactions: req.body.reactionBody, username: req.body.username } },
+      { $addToSet: { reactions: {reactionBody: req.body.reactionBody, username: req.body.username }} },
       { runValidators: true, new: true }
     )
       .then((thought) =>
