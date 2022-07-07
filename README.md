@@ -6,7 +6,7 @@
   - The purpose of this homework assignment was to build an API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. 
   - I built the back end from scratch and by completing this assignment, I was able to implement lessons from my course, including:
     - Configured a working Express.js API
-    - Used Mongoose ODM to interact with a NoSQL database
+    - Used Mongoose ODM to interact with a NoSQL database (MongoDB)
     - Followed the MVC paradigm to structure my files.
     - Established Express.js routes to deploy the application
   - See the Usage section for a link to a walkthrough video demonstrating the application's functionality using Insomnia
