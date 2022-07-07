@@ -6,15 +6,15 @@
   - The purpose of this homework assignment was to build an API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. 
   - I built the back end from scratch and by completing this assignment, I was able to implement lessons from my course, including:
     - Configured a working Express.js API
-    - Used Mongoose ORM to interact with a NoSQL database
-    - Utilized the express-session npm package for authentication
+    - Used Mongoose ODM to interact with a NoSQL database
     - Followed the MVC paradigm to structure my files.
     - Established Express.js routes to deploy the application
+  - See the Usage section for a link to a walkthrough video demonstrating the application's functionality using Insomnia
     
     
-  The following are screenshots of the application running on my local server and MySQL Databased initiated with data.  
+  The following is a screenshot of all the server routes as seen in Insomnia.   
 
-  ![name](https address)  
+  ![Insomnia](./utils/pics/screenshot1.JPG)  
    
    
   ## Table of Contents
@@ -29,23 +29,18 @@
   
   ## Installation
   
-  To install this application, there are a few steps to folllow:
+  To use this application, there are a few steps to folllow:
   1) Have [NODE.js](https://nodejs.org/en/download/) installed on your computer. 
-  2) Have [MySql](https://www.mysql.com/downloads/) installed on your computer.
-  3) Clone my [GitHub](https://github.com/CM-GDev/CMG_TECH_BLOG) repo for this application.
-  4) Change .env.Example file to .env after updating with your relevant database information 
-  5) From the root of your project folder, run 'npm install' from the command-line to install the required npm packages for the application
-  6) Initiate the database in mysql before seeding it with 'npm run seed' from the command-line
-  7) Run 'npm start' to start the server
-  8) In your web browser visit http://localhost:3001/ to interact with the application
+  2) Clone my [GitHub](https://github.com/CM-GDev/NTRS-NuevaTuRedSocial) repo for this application.
+  3) From the root of your project folder and from the command-line, run "npm i" to install the required npm packages for the application
   
   ## Usage
   
-  To use the deployed version of this application, visit my Heroku page: [CMG_TechBloG](https://cryptic-castle-82513.herokuapp.com/) 
+  After installing the items above, use this [Walkthrough](https://youtu.be/pJVwoOdp19E) video as a guide for using this application. 
     
   ## Credits
 
-  For this homework assignment, I relied on the documentation for [Sequelize](https://sequelize.org/docs/v6/category/core-concepts/)  
+  For this homework assignment, I relied on the documentation for [Mongoose ](https://mongoosejs.com/docs/guide.html)  
   
   ## License
   
